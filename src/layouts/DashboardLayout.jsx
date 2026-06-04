@@ -33,8 +33,8 @@ function DashboardLayout() {
         />
       )}
 
-      <main className={`relative min-h-screen transition-all duration-300 ${sidebarCollapsed ? 'lg:pl-20' : 'lg:pl-72'} pt-24`}> 
-        <div className="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+      <main className={`relative min-h-screen transition-all duration-300 ${sidebarCollapsed ? 'lg:pl-20' : 'lg:pl-72'} pt-20`}>
+        <div className="mx-auto max-w-7xl px-4 pt-6 pb-10 sm:px-6 lg:px-8">
           <Outlet />
         </div>
       </main>
