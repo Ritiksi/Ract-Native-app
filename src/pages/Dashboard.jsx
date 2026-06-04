@@ -1,5 +1,7 @@
+import HouseList from '../components/HouseList';
+
 function Dashboard() {
-  return <div className="min-h-[calc(100vh-6rem)]" />
+  return <HouseList />;
 }
 
-export default Dashboard
+export default Dashboard;
