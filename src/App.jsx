@@ -1,33 +1,40 @@
-import { Routes, Route } from 'react-router-dom'
-import DashboardLayout from './layouts/DashboardLayout.jsx'
-import Dashboard from './pages/Dashboard.jsx'
-
-const pageRoutes = [
-  { path: 'dashboard', section: 'Dashboard' },
-  { path: 'users', section: 'Users' },
-  { path: 'analytics', section: 'Analytics' },
-  { path: 'messages', section: 'Messages' },
-  { path: 'projects', section: 'Projects' },
-  { path: 'settings', section: 'Settings' },
-  { path: 'help', section: 'Help' },
-  { path: 'logout', section: 'Logout' }
-]
+import { Routes, Route, Navigate } from "react-router-dom";
+import DashboardLayout from "./layouts/DashboardLayout";
+import Dashboard from "./pages/Dashboard";
+import Projects from "./pages/Projects";
+import Analytics from "./pages/Analytics";
+import Users from "./pages/Users";
+import Messages from "./pages/Messages";
+import Settings from "./pages/Settings";
+import Help from "./pages/Help";
+import Footer from "./Footer"
 
 function App() {
-  return (
+  return (<>
     <Routes>
       <Route path="/" element={<DashboardLayout />}>
-        <Route index element={<Dashboard section="Dashboard" />} />
-        {pageRoutes.map((route) => (
-          <Route
-            key={route.path}
-            path={route.path}
-            element={<Dashboard section={route.section} />}
-          />
-        ))}
+        {/* Redirect empty path to dashboard */}
+        <Route index element={<Navigate to="/dashboard" replace />} />
+
+        {/* Dashboard layout routes */}
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="projects" element={<Projects />} />
+        <Route path="analytics" element={<Analytics />} />
+        <Route path="users" element={<Users />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="help" element={<Help />} />
+
+        {/* Fallback to dashboard */}
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+
       </Route>
+
     </Routes>
-  )
+    <Footer />
+  </>
+
+  );
 }
 
-export default App
+export default App;
