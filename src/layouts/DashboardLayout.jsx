@@ -15,29 +15,32 @@ function DashboardLayout() {
   }, [location.pathname])
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900">
+    <div className="min-h-screen bg-slate-100 text-slate-900 flex flex-col">
       <Navbar onMobileMenu={() => setSidebarOpen(true)} />
-      <Sidebar
-        open={sidebarOpen}
-        collapsed={sidebarCollapsed}
-        onToggleCollapsed={() => setSidebarCollapsed((state) => !state)}
-        onCloseMobile={() => setSidebarOpen(false)}
-      />
 
-      {sidebarOpen && (
-        <button
-          type="button"
-          onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 z-30 bg-slate-950/40 backdrop-blur-sm lg:hidden"
-          aria-label="Close sidebar"
+      <div className="flex flex-1 pt-20">
+        <Sidebar
+          open={sidebarOpen}
+          collapsed={sidebarCollapsed}
+          onToggleCollapsed={() => setSidebarCollapsed((state) => !state)}
+          onCloseMobile={() => setSidebarOpen(false)}
         />
-      )}
 
-      <main className={`relative min-h-screen transition-all duration-300 ${sidebarCollapsed ? 'lg:pl-20' : 'lg:pl-72'} pt-20`}>
-        <div className="mx-auto max-w-7xl px-4 pt-6 pb-10 sm:px-6 lg:px-8">
-          <Outlet />
-        </div>
-      </main>
+        {sidebarOpen && (
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(false)}
+            className="fixed inset-0 z-30 bg-slate-950/40 backdrop-blur-sm lg:hidden"
+            aria-label="Close sidebar"
+          />
+        )}
+
+        <main className="flex-1 relative transition-all duration-300">
+          <div className="mx-auto max-w-7xl px-4 pt-6 pb-10 sm:px-6 lg:px-8">
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
